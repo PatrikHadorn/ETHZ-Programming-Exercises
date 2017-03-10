@@ -1,6 +1,7 @@
 PROJNAME := ex2_4
 
-CPP := clang
+CPP := g++
+#CPP := clang++
 CFLAGS := -Wall -std=c++14
 LFLAGS := -lstdc++
 
