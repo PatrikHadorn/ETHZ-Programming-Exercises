@@ -1,7 +1,6 @@
-PROJNAME := ex2_4
+PROJNAME := maxSubarray
 
-CPP := g++
-#CPP := clang++
+CPP := clang
 CFLAGS := -Wall -std=c++14
 LFLAGS := -lstdc++
 

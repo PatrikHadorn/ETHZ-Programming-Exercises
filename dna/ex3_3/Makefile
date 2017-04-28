@@ -24,7 +24,7 @@ all: dirs proj
 
 proj: ${OBJFILES}
 	@echo "Linking: "${PROJNAME}
-	${CPP} -o ${OUTDIR}/${PROJNAME} $< ${LFLAGS}
+	${CPP} -o ${OUTDIR}/${PROJNAME} $? ${LFLAGS}
 
 bin/obj/%.o: %.cpp
 	@echo "Compiling "$<
