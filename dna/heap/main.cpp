@@ -51,8 +51,8 @@ public:
 	// ------------------------------------------------------------
 	size_t parent(size_t i)
 	{
-		// TODO: Bounds checking?
-		return i>>1;
+		//return i>>1;
+		return (i == 0) ? 0 : (i-1)>>1;
 	}
 
 	size_t left(size_t i)
