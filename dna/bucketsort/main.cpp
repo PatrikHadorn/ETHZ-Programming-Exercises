@@ -21,7 +21,9 @@ std::ostream& operator<<(std::ostream& os, std::vector<int> const& v)
 void bucketsort(int* array, int* l, int* r)
 {
 	int const num_buckets = 10;
-	std::list<int> buckets[num_buckets];
+	std::vector<int> buckets[num_buckets];
+	for (int i=0; i<num_buckets; ++i)
+		buckets[i].reserve((r-l)/num_buckets);
 
 	int max = *l;
 	for (int* p = l+1; p<=r; ++p)
@@ -58,14 +60,17 @@ void bucketsort(int* array, int* l, int* r)
 
 int main(int argc, char* argv[])
 {
-	size_t const input_size = 30;
+	size_t const input_size = 10000;
 	std::vector<int> input(input_size);
 	for (size_t i=0; i<input_size; ++i)
-		input[i] = rand()%1000;
+		input[i] = rand()%1000000;
 
 	std::cout << "Input:  " << input << std::endl;
+	clock_t start = clock();
 	bucketsort(input.data(), input.data(), input.data()+input_size-1);
+	clock_t end = clock();
 	std::cout << "Output: " << input << std::endl;
+	std::cout << "Time: " << 1e3*static_cast<double>(end-start)/CLOCKS_PER_SEC << "ms" << std::endl;
 
 	return 0;
 }
