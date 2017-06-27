@@ -31,6 +31,8 @@ void mergesort(int* array, int* l, int* r)
 	mergesort(array, l, l+half_index-1);
 	mergesort(array, l+half_index, r);
 
+	// TODO: how do we best avoid reallocating heap memory? I could take care 
+	// of memory-management myself through a memory pool.
 	int *tmp = new int[size];
 	int *i=l, *j=l+half_index, k=0;
 	while (i<l+half_index && j<=r)
