@@ -95,7 +95,7 @@ private:
 		if (left(i) >= size())
 			return;
 		
-		// TODO: Made sure we're only affecting one branch to get nlogn
+		// TODO: Made sure we're only affecting one branch to get logn
 		// performance. Code not very pretty though.
 		size_t largest_child;
 		if (left(i) < size())
