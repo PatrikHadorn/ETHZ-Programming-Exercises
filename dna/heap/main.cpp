@@ -92,34 +92,54 @@ private:
 	void heapify(size_t i) 
 	{
 		T& t = m_data[i];
+		if (left(i) >= size())
+			return;
 		
+		// TODO: Made sure we're only affecting one branch to get nlogn
+		// performance. Code not very pretty though.
+		size_t largest_child;
 		if (left(i) < size())
-		{
-			T& l = m_data[left(i)];
-			if (l > t)
-				std::swap(t, l);
-		}
-		
+			largest_child = left(i);
 		if (right(i) < size())
-		{
-			T& r = m_data[right(i)];
-			if (right(i) < size() && r > t)
-				std::swap(t, r);
-		}
-
-		// Termination Condition
-		if (right(i) < size())
-			heapify(right(i));
-		if (left(i) < size())
+			largest_child = (m_data[left(i)] < m_data[right(i)]) ? right(i) : left(i);
+		std::swap(t, m_data[largest_child]);
+		if (largest_child == left(i))
 			heapify(left(i));
+		if (largest_child == right(i))
+			heapify(right(i));
+		return;
+
+		//if (left(i) < size())
+		//{
+		//	T& l = m_data[left(i)];
+		//	if (l > t)
+		//		std::swap(t, l);
+		//}
+		//
+		//if (right(i) < size())
+		//{
+		//	T& r = m_data[right(i)];
+		//	if (right(i) < size() && r > t)
+		//		std::swap(t, r);
+		//}
+
+		//// Termination Condition
+		//if (right(i) < size())
+		//	heapify(right(i));
+		//if (left(i) < size())
+		//	heapify(left(i));
 	}
 };
 
 int main(int argc, char* argv[])
 {
-	std::vector<int> vec{1,2,3,4,5,6,7,8,9,10,11};
+	std::vector<int> vec;
+	for (int i=0; i<1000; ++i)
+		vec.push_back(rand()%99);
+
 	Heap<float> testHeap(vec);
 
+	//clock_t start = clock();
 	while (!testHeap.empty())
 	{
 #if 0
@@ -130,8 +150,11 @@ int main(int argc, char* argv[])
 #endif
 
 		std::cout << "Max: " << testHeap.extract_max() << std::endl;
+		//testHeap.extract_max();
 	}
 
+	//clock_t end = clock();
+	//std::cout << "Clock used: " << end-start << std::endl;
 	return 0;
 }
 
