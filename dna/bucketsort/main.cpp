@@ -20,6 +20,9 @@ std::ostream& operator<<(std::ostream& os, std::vector<int> const& v)
 // TODO: Currently requires positive input, could add a positive/negative bucket at the end?
 void bucketsort(int* array, int* l, int* r)
 {
+	// TODO: Might be better to create an array with n elements and storing the 
+	// end of each bucket as an index into that array.
+	
 	int const num_buckets = 10;
 	std::vector<int> buckets[num_buckets];
 	for (int i=0; i<num_buckets; ++i)
