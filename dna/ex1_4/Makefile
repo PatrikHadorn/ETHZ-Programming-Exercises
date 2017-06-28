@@ -13,7 +13,7 @@ else
 endif
 
 CPPFILES := $(wildcard *.cpp)
-OBJFILES := $(addprefix bin/obj/, $(CPPFILES:%.cpp=%.o))
+OBJFILES := $(addprefix ${OUTDIR}/obj/, $(CPPFILES:%.cpp=%.o))
 
 $(info Objects: ${OBJFILES})
 
@@ -25,7 +25,7 @@ proj: ${OBJFILES}
 	@echo "Linking: "${PROJNAME}
 	${CPP} -o ${OUTDIR}/${PROJNAME} $? ${LFLAGS}
 
-bin/obj/%.o: %.cpp
+${OUTDIR}/obj/%.o: %.cpp
 	@echo "Compiling "$<
 	${CPP} -o $@ -c ${CFLAGS} $<
 
@@ -35,4 +35,4 @@ clean:
 	@rm ${PROJNAME} 2>/dev/null || true
 
 dirs:
-	mkdir -p bin/obj ${OUTDIR}
+	mkdir -p ${OUTDIR}/obj

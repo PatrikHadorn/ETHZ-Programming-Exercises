@@ -1,4 +1,4 @@
-PROJNAME := quickselect
+PROJNAME := hash_map
 
 CPP := clang
 CFLAGS := -Wall -std=c++14
